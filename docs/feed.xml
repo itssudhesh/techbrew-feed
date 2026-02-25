@@ -1,59 +1,98 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/">
+<rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/">
 <channel>
 <title>Tech Brew</title>
 <link>https://www.techbrew.com</link>
 <description>Tech Brew scraped feed</description>
 <item>
-  <title>AIGoogle’s Gemini for navigation is full of trivia, but can struggle with directionsMorning Brew took a few walking and biking trips with Google’s new AI assistant.Patrick Kulp</title>
+  <title>Google’s Gemini for navigation is full of trivia, but can struggle with directions</title>
   <link>https://www.techbrew.com/stories/2026/02/17/google-gemini-navigation-test</link>
   <pubDate>2026-02-17</pubDate>
-  <media:content url="https://morningbrew.com/cdn-cgi/image/width=640,quality=70,format=auto,dpr=1/https://storage.morningbrew.com/image/2026-02-18/image-5531584c79357f3739a59ca63eec7dd5a1d9b707-3000x2000-jpg/ENT-Google-Gemini-Navigation-BHB-0226.jpg" medium="image"/>
+  <dc:creator>Patrick Kulp</dc:creator>
+  <category>Emerging Tech</category>
+  <description>Morning Brew took a few walking and biking trips with Google’s new AI assistant.</description>
+  <media:content url="https://cdn.sanity.io/images/bl383u0v/production/5531584c79357f3739a59ca63eec7dd5a1d9b707-3000x2000.jpg?rect=0,212,3000,1575&w=1200&h=630&q=70&fit=crop&auto=format" medium="image"/>
 </item>
 <item>
-  <title>AIEnterprise on edgeWhizy Kim| about 9 hours ago</title>
+  <title>Enterprise on edge</title>
   <link>https://www.techbrew.com/stories/openai-anthropic-enterprise-panic</link>
-  <pubDate>2026-02-25</pubDate>
+  <pubDate>2026-02-24</pubDate>
+  <dc:creator>Whizy Kim</dc:creator>
+  <category>Emerging Tech</category>
+  <description>Tech Brew keeps business leaders up-to-date on the latest innovations, automation advances, policy shifts, and more, so they can make informed decisions about tech.</description>
+  <media:content url="https://morningbrew.com/cdn-cgi/image/width=1200,height=630,quality=70,format=auto/https://storage.morningbrew.com/image/2026-02-24/image-ff494c0ef63782b0c6f7666c4539be996308292e-2000x1334-jpg/TB-Download-AIBurnout-0226.jpg" medium="image"/>
 </item>
 <item>
-  <title>AIA Tale of Two ClaudesWhizy Kim| Feb 23, 2026</title>
+  <title>A Tale of Two Claudes</title>
   <link>https://www.techbrew.com/stories/2026/02/23/a-tale-of-two-claudes</link>
   <pubDate>2026-02-23</pubDate>
+  <dc:creator>Whizy Kim</dc:creator>
+  <category>Emerging Tech</category>
+  <description>Tech Brew keeps business leaders up-to-date on the latest innovations, automation advances, policy shifts, and more, so they can make informed decisions about tech.</description>
+  <media:content url="https://morningbrew.com/cdn-cgi/image/width=1200,height=630,quality=70,format=auto/https://storage.morningbrew.com/image/2026-02-23/image-e9f786aa7083a72078d0aee5c5444fe8da31d407-1500x1000-jpg/TB-Download-SonnetOpus-0226.jpg" medium="image"/>
 </item>
 <item>
-  <title>Consumer ElectronicsThe great RAM grab has begunAlex Carr| Feb 20, 2026</title>
+  <title>The great RAM grab has begun</title>
   <link>https://www.techbrew.com/stories/2026/02/20/the-great-ram-grab-has-begun</link>
   <pubDate>2026-02-20</pubDate>
+  <dc:creator>Alex Carr</dc:creator>
+  <category>Emerging Tech</category>
+  <description>Tech Brew keeps business leaders up-to-date on the latest innovations, automation advances, policy shifts, and more, so they can make informed decisions about tech.</description>
+  <media:content url="https://morningbrew.com/cdn-cgi/image/width=1200,height=630,quality=70,format=auto/https://storage.morningbrew.com/image/2026-02-20/image-6c939158c4d9213b4e42d6bce76d315986cd8c99-3000x2000-png/TB_Download_SM_02202026.png" medium="image"/>
 </item>
 <item>
-  <title>Consumer ElectronicsMeta does an about-faceAlex Carr| Feb 19, 2026</title>
+  <title>Meta does an about-face</title>
   <link>https://www.techbrew.com/stories/2026/02/19/meta-does-an-about-face</link>
   <pubDate>2026-02-19</pubDate>
+  <dc:creator>Alex Carr</dc:creator>
+  <category>Emerging Tech</category>
+  <description>Tech Brew keeps business leaders up-to-date on the latest innovations, automation advances, policy shifts, and more, so they can make informed decisions about tech.</description>
+  <media:content url="https://morningbrew.com/cdn-cgi/image/width=1200,height=630,quality=70,format=auto/https://storage.morningbrew.com/image/2026-02-19/image-4c1be6ff1419e9962b5cc105fd77d7f2a54d2327-2000x1334-jpg/TB-Download-MetaGlasses-0226.jpg" medium="image"/>
 </item>
 <item>
-  <title>Future of TravelThe robotaxi trust problemJordyn Grzelewski| Feb 18, 2026</title>
+  <title>The robotaxi trust problem</title>
   <link>https://www.techbrew.com/stories/2026/02/18/the-robotaxi-trust-problem</link>
   <pubDate>2026-02-18</pubDate>
+  <dc:creator>Jordyn Grzelewski</dc:creator>
+  <category>Emerging Tech</category>
+  <description>Tech Brew keeps business leaders up-to-date on the latest innovations, automation advances, policy shifts, and more, so they can make informed decisions about tech.</description>
+  <media:content url="https://morningbrew.com/cdn-cgi/image/width=1200,height=630,quality=70,format=auto/https://storage.morningbrew.com/image/2026-02-18/image-1f40cf408f75e0c14e97eafcb65f1e4b2e4a5161-2000x1334-jpg/TB-Download-TeslaWaymo-0226.jpg" medium="image"/>
 </item>
 <item>
-  <title>Future of TravelWhy it’s so hard to deploy AVs at airportsJordyn Grzelewski</title>
+  <title>Why it’s so hard to deploy AVs at airports</title>
   <link>https://www.techbrew.com/stories/2026/01/21/deploy-avs-at-airports</link>
   <pubDate>2026-01-21</pubDate>
+  <dc:creator>Jordyn Grzelewski</dc:creator>
+  <category>Emerging Tech</category>
+  <description>Unlike your parents, your BFF, and your coworkers, robotaxi companies actually want to take you to the airport. But it’s easier said than done.</description>
+  <media:content url="https://cdn.sanity.io/images/bl383u0v/production/b486c8f5e1c58bb84e17f0f54c5d9d5d2b3227a8-3000x2000.jpg?rect=0,212,3000,1575&w=1200&h=630&q=70&fit=crop&auto=format" medium="image"/>
 </item>
 <item>
-  <title>Green TechThe ‘greener’ the data center, the greater the potential savingsTricia Crimmins</title>
+  <title>The ‘greener’ the data center, the greater the potential savings</title>
   <link>https://www.techbrew.com/stories/2026/01/13/green-data-centers-explained</link>
   <pubDate>2026-01-13</pubDate>
+  <dc:creator>Tricia Crimmins</dc:creator>
+  <category>Emerging Tech</category>
+  <description>Data centers that prioritize clean energy and efficiency can save money and foster growth.</description>
+  <media:content url="https://cdn.sanity.io/images/bl383u0v/production/0830f5a75ae710c7e26c197600c69d1eb5c94cea-3000x2000.jpg?rect=0,212,3000,1575&w=1200&h=630&q=70&fit=crop&auto=format" medium="image"/>
 </item>
 <item>
-  <title>AIWhy is everyone in AI talking about world models?Patrick Kulp</title>
+  <title>Why is everyone in AI talking about world models?</title>
   <link>https://www.techbrew.com/stories/2025/12/18/world-models-ai</link>
   <pubDate>2025-12-18</pubDate>
+  <dc:creator>Patrick Kulp</dc:creator>
+  <category>Emerging Tech</category>
+  <description>Some AI luminaries are positioning them as the next big phase for AI progress.</description>
+  <media:content url="https://cdn.sanity.io/images/bl383u0v/production/0edfe9ff490de3639b8015aa746cdf3b8dc832f9-1500x1000.png?rect=0,106,1500,788&w=1200&h=630&q=70&fit=crop&auto=format" medium="image"/>
 </item>
 <item>
-  <title>AIWhat we’re looking for at CESTricia Crimmins, Jordyn Grzelewski, Patrick Kulp, Annie Saunders</title>
+  <title>What we’re looking for at CES</title>
   <link>https://www.techbrew.com/stories/2025/12/18/what-were-looking-for-at-ces-2026</link>
   <pubDate>2025-12-18</pubDate>
+  <dc:creator>Tricia Crimmins,</dc:creator>
+  <category>Emerging Tech</category>
+  <description>Morning Brew’s new Enterprise Tech team is headed to Vegas.</description>
+  <media:content url="https://cdn.sanity.io/images/bl383u0v/production/d1d254142c71d48d7453502d2569ae9316a51403-4000x2667.jpg?rect=0,283,4000,2100&w=1200&h=630&q=70&fit=crop&auto=format" medium="image"/>
 </item>
 </channel>
 </rss>
