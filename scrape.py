@@ -1,6 +1,5 @@
 import requests
 from bs4 import BeautifulSoup
-from datetime import datetime
 import os
 import time
 
@@ -9,6 +8,10 @@ HEADERS = {"User-Agent": "Mozilla/5.0"}
 
 def escape_xml(text):
     return text.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace('"', "&quot;")
+
+def wrap_cdata(html):
+    # CDATA lets us embed raw HTML in XML without escaping every tag
+    return "<![CDATA[" + html.replace("]]>", "]]]]><![CDATA[>") + "]]>"
 
 def get_article_details(url):
     try:
@@ -46,11 +49,27 @@ def get_article_details(url):
         desc_meta = soup.find("meta", property="og:description")
         description = desc_meta["content"] if desc_meta else ""
 
-        return title, image_url, date_str, author, category, description
+        # Article body — Tech Brew uses id="article-body-content"
+        body_html = ""
+        body_tag = (
+            soup.find("div", id="article-body-content") or
+            soup.find("article")
+        )
+        if body_tag:
+            # Make relative links and image srcs absolute
+            for a in body_tag.find_all("a", href=True):
+                if a["href"].startswith("/"):
+                    a["href"] = BASE_URL + a["href"]
+            for img in body_tag.find_all("img", src=True):
+                if img["src"].startswith("/"):
+                    img["src"] = BASE_URL + img["src"]
+            body_html = str(body_tag)
+
+        return title, image_url, date_str, author, category, description, body_html
 
     except Exception as e:
         print(f"Failed to fetch {url}: {e}")
-        return "", "", "", "", "", ""
+        return "", "", "", "", "", "", ""
 
 
 def build_feed():
@@ -69,7 +88,7 @@ def build_feed():
     for href in links:
         url = BASE_URL + href
         print(f"Fetching {url}")
-        title, image_url, date_str, author, category, description = get_article_details(url)
+        title, image_url, date_str, author, category, description, body_html = get_article_details(url)
         if not title:
             continue
         items.append({
@@ -79,12 +98,13 @@ def build_feed():
             "date": date_str,
             "author": author,
             "category": category,
-            "description": description
+            "description": description,
+            "body": body_html,
         })
         time.sleep(0.5)
 
     rss = '<?xml version="1.0" encoding="UTF-8"?>\n'
-    rss += '<rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/">\n<channel>\n'
+    rss += '<rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/">\n<channel>\n'
     rss += '<title>Tech Brew</title>\n'
     rss += f'<link>{BASE_URL}</link>\n'
     rss += '<description>Tech Brew scraped feed</description>\n'
@@ -101,6 +121,8 @@ def build_feed():
             rss += f"  <category>{escape_xml(item['category'])}</category>\n"
         if item["description"]:
             rss += f"  <description>{escape_xml(item['description'])}</description>\n"
+        if item["body"]:
+            rss += f"  <content:encoded>{wrap_cdata(item['body'])}</content:encoded>\n"
         if item["image"]:
             img_url = escape_xml(item["image"])
             rss += f'  <media:content url="{img_url}" medium="image"/>\n'
