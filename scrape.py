@@ -7,6 +7,9 @@ import time
 BASE_URL = "https://www.techbrew.com"
 HEADERS = {"User-Agent": "Mozilla/5.0"}
 
+def escape_xml(text):
+    return text.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace('"', "&quot;")
+
 def get_article_details(url):
     try:
         r = requests.get(url, headers=HEADERS, timeout=10)
@@ -26,7 +29,7 @@ def get_article_details(url):
         # Date
         date_meta = soup.find("meta", itemprop="datePublished")
         if date_meta:
-            date_str = date_meta["content"][:10]  # just YYYY-MM-DD
+            date_str = date_meta["content"][:10]
         else:
             time_tag = soup.find("time")
             date_str = time_tag.get_text(strip=True) if time_tag else ""
@@ -78,7 +81,7 @@ def build_feed():
             "category": category,
             "description": description
         })
-        time.sleep(0.5)  # be polite, avoid hammering the server
+        time.sleep(0.5)
 
     rss = '<?xml version="1.0" encoding="UTF-8"?>\n'
     rss += '<rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/">\n<channel>\n'
@@ -88,16 +91,16 @@ def build_feed():
 
     for item in items:
         rss += "<item>\n"
-        rss += f"  <title>{item['title']}</title>\n"
+        rss += f"  <title>{escape_xml(item['title'])}</title>\n"
         rss += f"  <link>{item['url']}</link>\n"
         if item["date"]:
             rss += f"  <pubDate>{item['date']}</pubDate>\n"
         if item["author"]:
-            rss += f"  <dc:creator>{item['author']}</dc:creator>\n"
+            rss += f"  <dc:creator>{escape_xml(item['author'])}</dc:creator>\n"
         if item["category"]:
-            rss += f"  <category>{item['category']}</category>\n"
+            rss += f"  <category>{escape_xml(item['category'])}</category>\n"
         if item["description"]:
-            rss += f"  <description>{item['description']}</description>\n"
+            rss += f"  <description>{escape_xml(item['description'])}</description>\n"
         if item["image"]:
             img_url = item["image"]
             rss += f'  <media:content url="{img_url}" medium="image"/>\n'
