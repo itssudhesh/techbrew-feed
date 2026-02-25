@@ -52,7 +52,8 @@ def build_feed():
         rss += f"  <link>{item['url']}</link>\n"
         rss += f"  <pubDate>{item['date']}</pubDate>\n"
         if item["image"]:
-            rss += f'  <media:content url="{item[\"image\"]}" medium="image"/>\n'
+            img_url = item["image"]
+            rss += f'  <media:content url="{img_url}" medium="image"/>\n'
         rss += "</item>\n"
 
     rss += "</channel>\n</rss>"
@@ -63,12 +64,3 @@ def build_feed():
     print(f"Feed written with {len(items)} items.")
 
 build_feed()
-```
-
-Commit it directly to main.
-
-**Stage 3: Add the GitHub Actions workflow**
-
-Still in the repo, click "Add file" then "Create new file". In the filename box type exactly this path including the folders:
-```
-.github/workflows/scrape.yml
