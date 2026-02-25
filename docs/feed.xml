@@ -4,5 +4,56 @@
 <title>Tech Brew</title>
 <link>https://www.techbrew.com</link>
 <description>Tech Brew scraped feed</description>
+<item>
+  <title>AIGoogle’s Gemini for navigation is full of trivia, but can struggle with directionsMorning Brew took a few walking and biking trips with Google’s new AI assistant.Patrick Kulp</title>
+  <link>https://www.techbrew.com/stories/2026/02/17/google-gemini-navigation-test</link>
+  <pubDate>2026-02-17</pubDate>
+  <media:content url="https://morningbrew.com/cdn-cgi/image/width=640,quality=70,format=auto,dpr=1/https://storage.morningbrew.com/image/2026-02-18/image-5531584c79357f3739a59ca63eec7dd5a1d9b707-3000x2000-jpg/ENT-Google-Gemini-Navigation-BHB-0226.jpg" medium="image"/>
+</item>
+<item>
+  <title>AIEnterprise on edgeWhizy Kim| about 9 hours ago</title>
+  <link>https://www.techbrew.com/stories/openai-anthropic-enterprise-panic</link>
+  <pubDate>2026-02-25</pubDate>
+</item>
+<item>
+  <title>AIA Tale of Two ClaudesWhizy Kim| Feb 23, 2026</title>
+  <link>https://www.techbrew.com/stories/2026/02/23/a-tale-of-two-claudes</link>
+  <pubDate>2026-02-23</pubDate>
+</item>
+<item>
+  <title>Consumer ElectronicsThe great RAM grab has begunAlex Carr| Feb 20, 2026</title>
+  <link>https://www.techbrew.com/stories/2026/02/20/the-great-ram-grab-has-begun</link>
+  <pubDate>2026-02-20</pubDate>
+</item>
+<item>
+  <title>Consumer ElectronicsMeta does an about-faceAlex Carr| Feb 19, 2026</title>
+  <link>https://www.techbrew.com/stories/2026/02/19/meta-does-an-about-face</link>
+  <pubDate>2026-02-19</pubDate>
+</item>
+<item>
+  <title>Future of TravelThe robotaxi trust problemJordyn Grzelewski| Feb 18, 2026</title>
+  <link>https://www.techbrew.com/stories/2026/02/18/the-robotaxi-trust-problem</link>
+  <pubDate>2026-02-18</pubDate>
+</item>
+<item>
+  <title>Future of TravelWhy it’s so hard to deploy AVs at airportsJordyn Grzelewski</title>
+  <link>https://www.techbrew.com/stories/2026/01/21/deploy-avs-at-airports</link>
+  <pubDate>2026-01-21</pubDate>
+</item>
+<item>
+  <title>Green TechThe ‘greener’ the data center, the greater the potential savingsTricia Crimmins</title>
+  <link>https://www.techbrew.com/stories/2026/01/13/green-data-centers-explained</link>
+  <pubDate>2026-01-13</pubDate>
+</item>
+<item>
+  <title>AIWhy is everyone in AI talking about world models?Patrick Kulp</title>
+  <link>https://www.techbrew.com/stories/2025/12/18/world-models-ai</link>
+  <pubDate>2025-12-18</pubDate>
+</item>
+<item>
+  <title>AIWhat we’re looking for at CESTricia Crimmins, Jordyn Grzelewski, Patrick Kulp, Annie Saunders</title>
+  <link>https://www.techbrew.com/stories/2025/12/18/what-were-looking-for-at-ces-2026</link>
+  <pubDate>2025-12-18</pubDate>
+</item>
 </channel>
 </rss>
