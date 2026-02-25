@@ -6,7 +6,7 @@ import os
 BASE_URL = "https://www.techbrew.com"
 
 def build_feed():
-    r = requests.get(BASE_URL, headers={"User-Agent": "Mozilla/5.0"})
+    r = requests.get(BASE_URL + "/search", headers={"User-Agent": "Mozilla/5.0"})
     soup = BeautifulSoup(r.text, "html.parser")
 
     items = []
@@ -18,15 +18,23 @@ def build_feed():
             continue
         seen.add(href)
 
-        title = a.get_text(strip=True)
+        article = a.find("article")
+        if not article:
+            continue
+
+        # Get title from content wrapper
+        content = article.find("div", class_=lambda c: c and "ContentWrapper" in c)
+        title = content.get_text(strip=True) if content else a.get_text(strip=True)
         if not title:
             continue
 
-        img = a.find("img")
+        # Get image
+        img = article.find("img")
         image_url = ""
         if img and img.get("src") and not img["src"].startswith("data:"):
             image_url = img["src"]
 
+        # Extract date from URL
         parts = href.split("/")
         try:
             date_str = f"{parts[2]}-{parts[3]}-{parts[4]}"
