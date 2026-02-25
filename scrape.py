@@ -56,6 +56,9 @@ def get_article_details(url):
             soup.find("article")
         )
         if body_tag:
+            # Remove inline email signup widget
+            for el in body_tag.find_all("div", class_="inline-subscribe"):
+                el.decompose()
             # Make relative links and image srcs absolute
             for a in body_tag.find_all("a", href=True):
                 if a["href"].startswith("/"):
