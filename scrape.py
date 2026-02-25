@@ -92,7 +92,7 @@ def build_feed():
     for item in items:
         rss += "<item>\n"
         rss += f"  <title>{escape_xml(item['title'])}</title>\n"
-        rss += f"  <link>{item['url']}</link>\n"
+        rss += f"  <link>{escape_xml(item['url'])}</link>\n"
         if item["date"]:
             rss += f"  <pubDate>{item['date']}</pubDate>\n"
         if item["author"]:
@@ -102,7 +102,7 @@ def build_feed():
         if item["description"]:
             rss += f"  <description>{escape_xml(item['description'])}</description>\n"
         if item["image"]:
-            img_url = item["image"]
+            img_url = escape_xml(item["image"])
             rss += f'  <media:content url="{img_url}" medium="image"/>\n'
         rss += "</item>\n"
 
