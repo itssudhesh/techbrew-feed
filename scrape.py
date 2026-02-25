@@ -2,48 +2,86 @@ import requests
 from bs4 import BeautifulSoup
 from datetime import datetime
 import os
+import time
 
 BASE_URL = "https://www.techbrew.com"
+HEADERS = {"User-Agent": "Mozilla/5.0"}
+
+def get_article_details(url):
+    try:
+        r = requests.get(url, headers=HEADERS, timeout=10)
+        soup = BeautifulSoup(r.text, "html.parser")
+
+        # Title
+        h1 = soup.find("h1")
+        title = h1.get_text(strip=True) if h1 else ""
+        if not title:
+            og = soup.find("meta", property="og:title")
+            title = og["content"] if og else ""
+
+        # Image
+        img_meta = soup.find("meta", itemprop="image")
+        image_url = img_meta["content"] if img_meta else ""
+
+        # Date
+        date_meta = soup.find("meta", itemprop="datePublished")
+        if date_meta:
+            date_str = date_meta["content"][:10]  # just YYYY-MM-DD
+        else:
+            time_tag = soup.find("time")
+            date_str = time_tag.get_text(strip=True) if time_tag else ""
+
+        # Author
+        author_tag = soup.find("a", href=lambda h: h and h.startswith("/contributor/"))
+        author = author_tag.get_text(strip=True) if author_tag else ""
+
+        # Category
+        bookmarklet = soup.find("div", attrs={"data-vertical": True})
+        category = bookmarklet["data-vertical"].replace("-", " ").title() if bookmarklet else ""
+
+        # Description
+        desc_meta = soup.find("meta", property="og:description")
+        description = desc_meta["content"] if desc_meta else ""
+
+        return title, image_url, date_str, author, category, description
+
+    except Exception as e:
+        print(f"Failed to fetch {url}: {e}")
+        return "", "", "", "", "", ""
+
 
 def build_feed():
-    r = requests.get(BASE_URL, headers={"User-Agent": "Mozilla/5.0"})
+    r = requests.get(BASE_URL, headers=HEADERS)
     soup = BeautifulSoup(r.text, "html.parser")
 
-    items = []
+    links = []
     seen = set()
-
     for a in soup.select("a[href^='/stories/']"):
         href = a["href"]
-        if href in seen:
-            continue
-        seen.add(href)
+        if href not in seen:
+            seen.add(href)
+            links.append(href)
 
-        title = a.get_text(strip=True)
+    items = []
+    for href in links:
+        url = BASE_URL + href
+        print(f"Fetching {url}")
+        title, image_url, date_str, author, category, description = get_article_details(url)
         if not title:
             continue
-
-        # Look for image inside the link, or in parent, or in siblings
-        image_url = ""
-        search_area = a.find_parent() or a
-        img = search_area.find("img")
-        if img and img.get("src") and not img["src"].startswith("data:"):
-            image_url = img["src"]
-
-        parts = href.split("/")
-        try:
-            date_str = f"{parts[2]}-{parts[3]}-{parts[4]}"
-        except IndexError:
-            date_str = datetime.today().strftime("%Y-%m-%d")
-
         items.append({
             "title": title,
-            "url": BASE_URL + href,
+            "url": url,
             "image": image_url,
-            "date": date_str
+            "date": date_str,
+            "author": author,
+            "category": category,
+            "description": description
         })
+        time.sleep(0.5)  # be polite, avoid hammering the server
 
     rss = '<?xml version="1.0" encoding="UTF-8"?>\n'
-    rss += '<rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/">\n<channel>\n'
+    rss += '<rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/">\n<channel>\n'
     rss += '<title>Tech Brew</title>\n'
     rss += f'<link>{BASE_URL}</link>\n'
     rss += '<description>Tech Brew scraped feed</description>\n'
@@ -52,7 +90,14 @@ def build_feed():
         rss += "<item>\n"
         rss += f"  <title>{item['title']}</title>\n"
         rss += f"  <link>{item['url']}</link>\n"
-        rss += f"  <pubDate>{item['date']}</pubDate>\n"
+        if item["date"]:
+            rss += f"  <pubDate>{item['date']}</pubDate>\n"
+        if item["author"]:
+            rss += f"  <dc:creator>{item['author']}</dc:creator>\n"
+        if item["category"]:
+            rss += f"  <category>{item['category']}</category>\n"
+        if item["description"]:
+            rss += f"  <description>{item['description']}</description>\n"
         if item["image"]:
             img_url = item["image"]
             rss += f'  <media:content url="{img_url}" medium="image"/>\n'
